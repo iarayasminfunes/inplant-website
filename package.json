@@ -1,0 +1,12 @@
+{
+  "name": "inplant-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de Inplant — estático (HTML/CSS/JS) con backend de contacto en Vercel Functions.",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}

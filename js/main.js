@@ -102,10 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.addEventListener('click', () => scrollByCard(-1));
   }
 
-  /* Contact form — builds a WhatsApp message from the fields and opens
-     wa.me in a new tab, since the site has no backend yet. The number in
-     data-whatsapp-number on the form is a PROVISIONAL / example number —
-     swap it for Inplant's real WhatsApp number. */
+  /* Contact form — opens WhatsApp with the message pre-filled (immediate,
+     no backend needed) AND, in parallel, POSTs the same lead to /api/contact
+     so it lands as an email to Inplant even if the visitor never finishes
+     the WhatsApp step. The WhatsApp number below is a PROVISIONAL / example
+     number — swap it for Inplant's real one. */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -120,6 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
         `Mi teléfono: ${phone}\n` +
         `Consulta: ${query}`;
       window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+
+      // Fire-and-forget — WhatsApp already opened above regardless of
+      // whether this succeeds, so a failed/slow backend never blocks the
+      // visitor. Errors are only logged, not shown, to keep this silent.
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, query }),
+      }).catch((err) => console.error('Contact backend unreachable:', err));
 
       const btn = contactForm.querySelector('button');
       const status = document.getElementById('contactFormStatus');
