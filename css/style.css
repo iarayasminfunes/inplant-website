@@ -1,0 +1,934 @@
+/* ==========================================================================
+   INPLANT — Bienestar Vegetal
+   ========================================================================== */
+
+:root{
+  --green-900:#1f5640;
+  --green-700:#2D7253;
+  --green-600:#357f5d;
+  --green-100:#dce9df;
+  --green-50:#eef3ec;
+
+  --cream:#f7f4ec;
+  --cream-2:#f1ede1;
+  --white:#ffffff;
+  --ink:#2A2A2A;
+  --ink-soft:#5b5b54;
+
+  --blob-blue:#c3d8d6;
+  --blob-pink:#eab7c0;
+  --blob-green:#c7dfc4;
+  --blob-yellow:#eec96a;
+
+  /* Secondary accent system — taken from Inplant's Instagram color coding,
+     used for small accents (icons, tags) rather than full section blocks.
+     Verde = marca/acciones · Rosa = recuperación · Amarillo = asesoramiento
+     · Azul petróleo = ambientación/espacios · Crema = superficies. */
+  --pink-700:#c5607e;
+  --pink-100:#f7dde4;
+  --yellow-700:#b1832a;
+  --yellow-100:#faedc9;
+  --teal-700:#2a6269;
+  --teal-100:#d9e8e8;
+
+  --radius-lg:28px;
+  --radius-md:18px;
+  --radius-sm:12px;
+  --radius-pill:999px;
+
+  --shadow-sm:0 4px 14px rgba(42,42,42,.06);
+  --shadow-md:0 14px 40px rgba(31,86,64,.14);
+
+  --font-display:'Playfair Display', serif;
+  --font-body:'Poppins', sans-serif;
+
+  --container:1240px;
+
+  /* Default keyboard-focus ring color — swapped to cream on dark/green
+     surfaces (see below) so it stays visible against any background. */
+  --focus-ring:var(--green-700);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+/* Screen-reader-only content — visually hidden but still announced
+   (used for the aria-live status message on the contact form). */
+.sr-only{
+  position:absolute;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* Visible keyboard focus on every interactive element. Only shows for
+   keyboard/AT navigation (:focus-visible), never on mouse click. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--focus-ring);
+  outline-offset:2px;
+  border-radius:4px;
+}
+
+/* Surfaces where the default green ring would have poor contrast —
+   swap to cream. Solid-color buttons (green/dark) always get the cream
+   ring too, regardless of what they sit on. */
+.topbar, .footer, .contact,
+.btn--primary, .btn--dark{
+  --focus-ring:var(--cream);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .hero__badge, .hero__badge-leaf{ animation:none !important; }
+  [data-reveal]{ opacity:1 !important; transform:none !important; }
+}
+
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+/* Headlines default to Poppins (informative, Instagram-close) — Playfair
+   is reserved for short emphasized phrases/words via <em>, not full titles. */
+h1,h2,h3,h4{ font-family:var(--font-body); margin:0; font-weight:700; line-height:1.2; letter-spacing:-.01em; }
+h1 em, h2 em{ font-family:var(--font-display); color:var(--green-700); font-style:italic; font-weight:500; }
+p{ margin:0; line-height:1.7; color:var(--ink-soft); }
+
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 24px;
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:.75rem;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--green-700);
+  margin-bottom:10px;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:14px 24px;
+  border-radius:var(--radius-pill);
+  font-size:.92rem;
+  font-weight:500;
+  white-space:nowrap;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+}
+.btn svg{ flex-shrink:0; transition:transform .25s ease; }
+.btn:hover svg{ transform:translateX(3px); }
+.btn:hover{ transform:translateY(-2px); }
+.btn:active{ transform:translateY(0) scale(.97); }
+.btn[disabled],
+.btn.is-disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  pointer-events:none;
+  transform:none;
+  box-shadow:none;
+}
+.btn.is-loading{
+  opacity:.75;
+  cursor:progress;
+  pointer-events:none;
+}
+
+.btn--primary{
+  background:var(--green-700);
+  color:#fff;
+  box-shadow:var(--shadow-md);
+}
+.btn--primary:hover{ background:var(--green-900); }
+.btn--primary:active{ background:var(--green-900); }
+
+.btn--dark{
+  background:var(--ink);
+  color:#fff;
+}
+.btn--dark:hover{ background:#000; }
+.btn--dark:active{ background:#000; }
+
+.btn--sm{ padding:12px 20px; font-size:.85rem; }
+
+/* ==========================================================================
+   TOP BAR
+   ========================================================================== */
+.topbar{
+  background:var(--green-700);
+  color:#fff;
+}
+.topbar__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:9px 24px;
+  font-size:.8rem;
+}
+.topbar__msg{ display:inline-flex; align-items:center; gap:7px; font-weight:500; letter-spacing:.01em; }
+.topbar__social{ display:flex; gap:14px; }
+.topbar__social a{
+  position:relative;
+  width:26px; height:26px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.14);
+  transition:background .2s ease, transform .2s ease;
+}
+.topbar__social a:hover{ background:rgba(255,255,255,.28); transform:translateY(-2px); }
+/* Invisible 44×44 hit area — the icon stays visually small (26px) so the
+   slim topbar doesn't blow out, but the tappable/clickable region meets
+   the minimum touch-target size. Clicks on this pseudo bubble to the <a>. */
+.topbar__social a::after{
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:44px; height:44px;
+  transform:translate(-50%,-50%);
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--cream);
+  border-bottom:1px solid rgba(42,42,42,.06);
+  transition:box-shadow .3s ease, background .3s ease;
+}
+.header.is-scrolled{
+  background:rgba(247,244,236,.92);
+  backdrop-filter:blur(10px);
+  box-shadow:0 6px 24px rgba(42,42,42,.06);
+}
+.header__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:16px 24px;
+}
+.logo img:not(.logo-img){ height:38px; width:auto; border-radius:8px; }
+
+.logo-img {
+    height: 42px;    /* Altura estética estilo revista digital */
+    width: auto;     /* Mantiene la proporción perfecta de la hoja y el texto */
+    display: block;
+    object-fit: contain;
+}
+
+/* Same logo file as the header (single logo family) — recolored to a
+   flat white silhouette so it reads on the dark footer surface instead
+   of the near-black wordmark disappearing into it. */
+.logo-img--white{
+  height: 30px;
+  filter: brightness(0) invert(1);
+  opacity: .92;
+}
+
+.nav{ display:flex; align-items:center; gap:34px; }
+.nav__link{
+  position:relative;
+  font-size:.92rem;
+  font-weight:500;
+  color:var(--ink);
+  padding-bottom:4px;
+  transition:color .2s ease;
+}
+/* Invisible hit-area extension — the link's own text+underline box is
+   shorter than 44px, this pads the clickable region without changing
+   the visual spacing between nav items. */
+.nav__link::before{
+  content:'';
+  position:absolute;
+  top:-14px; bottom:-14px;
+  left:0; right:0;
+}
+.nav__link::after{
+  content:'';
+  position:absolute;
+  left:0; bottom:0;
+  width:0; height:2px;
+  background:var(--green-700);
+  transition:width .25s ease;
+}
+.nav__link:hover{ color:var(--green-700); }
+.nav__link:hover::after,
+.nav__link.active::after{ width:100%; }
+.nav__link.active{ color:var(--green-700); }
+
+.burger{
+  position:relative;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:34px; height:34px;
+}
+.burger::after{
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:44px; height:44px;
+  transform:translate(-50%,-50%);
+}
+.burger span{
+  height:2px; width:100%;
+  background:var(--ink);
+  border-radius:2px;
+  transition:transform .3s ease, opacity .3s ease;
+}
+.burger.is-open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.burger.is-open span:nth-child(2){ opacity:0; }
+.burger.is-open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero{
+  padding:72px 0 96px;
+  background:var(--cream);
+  position:relative;
+}
+.hero__inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:56px;
+  align-items:center;
+}
+.hero__text h1{
+  font-size:clamp(2.4rem, 4vw, 3.4rem);
+  margin-bottom:22px;
+}
+.hero__text p{
+  font-size:1.05rem;
+  max-width:460px;
+  margin-bottom:32px;
+}
+.hero__ctas{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:22px;
+}
+.hero__link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:.9rem;
+  font-weight:500;
+  color:var(--ink);
+  padding-bottom:2px;
+  border-bottom:1px solid rgba(42,42,42,.25);
+  transition:color .2s ease, border-color .2s ease;
+}
+.hero__link:hover{ color:var(--green-700); border-color:var(--green-700); }
+
+/* De-emphasized on purpose — the WhatsApp CTA above carries the hero's
+   main call to action, these are a light supporting reassurance. */
+.hero__features{
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+  margin-top:28px;
+  padding-top:20px;
+  border-top:1px solid rgba(42,42,42,.1);
+}
+.hero__features li{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.8rem;
+  font-weight:500;
+  color:var(--ink-soft);
+}
+.hero__features svg{ color:var(--green-700); flex-shrink:0; width:17px; height:17px; }
+
+.hero__media{ position:relative; }
+.hero__img{
+  border-radius:var(--radius-lg);
+  aspect-ratio:4/4.3;
+  box-shadow:var(--shadow-md);
+  overflow:hidden;
+}
+.hero__img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero__badge{
+  position:absolute;
+  left:-30px; bottom:-30px;
+  width:118px; height:118px;
+  background:var(--cream);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:var(--shadow-md);
+  animation:spin 18s linear infinite;
+}
+.hero__badge-ring{ width:100%; height:100%; position:absolute; inset:0; fill:var(--green-700); }
+.hero__badge-ring text{ fill:var(--green-700); }
+.hero__badge-leaf{ position:relative; color:var(--green-700); animation:spin-rev 18s linear infinite; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+@keyframes spin-rev{ to{ transform:rotate(-360deg); } }
+
+/* ==========================================================================
+   FEATURED PLANTS
+   ========================================================================== */
+.featured{ padding:90px 0; background:var(--cream-2); }
+
+.featured__head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:24px;
+  margin-bottom:48px;
+  flex-wrap:wrap;
+}
+.featured__head h2{ font-size:clamp(1.9rem, 3vw, 2.6rem); }
+.featured__headright{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  flex-wrap:wrap;
+}
+.featured__headright p{
+  font-size:.85rem;
+  max-width:280px;
+  text-align:right;
+}
+/* Arrows only do something on the real mobile carousel (see the
+   max-width:768px block below) — on tablet/desktop every card is already
+   visible at once in the static grid, so there's nothing to page through
+   and the controls stay hidden there. */
+.carousel-controls{ display:none; gap:10px; }
+.carousel-btn{
+  width:44px; height:44px; /* 44px minimum tap target */
+  border-radius:50%;
+  border:1px solid rgba(42,42,42,.15);
+  display:flex; align-items:center; justify-content:center;
+  background:var(--white);
+  color:var(--ink);
+  transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+.carousel-btn:hover{ background:var(--green-700); color:#fff; transform:translateY(-2px); }
+
+.plant-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:26px;
+}
+.plant-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:8px 16px 6px;
+  background:transparent;
+  box-shadow:none;
+  transition:transform .35s ease;
+}
+.plant-card:hover{ transform:translateY(-6px); }
+
+/* Elongated leaf-shaped image container — classic CSS "leaf" trick:
+   opposite corners at 0%/100% radius on a taller-than-wide box reads as
+   a single curved leaf (pointed tip + stem, rounded sides). Each color
+   alternates the diagonal and tilts slightly so the set feels hand-drawn,
+   not stamped from one template. */
+.plant-card__blob{
+  position:relative;
+  width:100%;
+  max-width:240px;
+  aspect-ratio:1/1.08;
+  margin:0 auto 26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  transform:rotate(var(--tilt, 0deg));
+  transition:transform .4s ease;
+}
+.plant-card--blue .plant-card__blob{
+  --tilt:-6deg;
+  background:var(--blob-blue);
+  border-radius:32% 68% 32% 68% / 38% 62% 38% 62%;
+}
+.plant-card--pink .plant-card__blob{
+  --tilt:5deg;
+  background:var(--blob-pink);
+  border-radius:68% 32% 68% 32% / 62% 38% 62% 38%;
+}
+.plant-card--green .plant-card__blob{
+  --tilt:7deg;
+  background:var(--blob-green);
+  border-radius:32% 68% 32% 68% / 38% 62% 38% 62%;
+}
+.plant-card--yellow .plant-card__blob{
+  --tilt:-5deg;
+  background:var(--blob-yellow);
+  border-radius:68% 32% 68% 32% / 62% 38% 62% 38%;
+}
+.plant-card:hover .plant-card__blob{ transform:rotate(var(--tilt, 0deg)) scale(1.05); }
+
+.plant-card__blob img{
+  width:74%;
+  height:78%;
+  object-fit:contain;
+  transform:rotate(calc(var(--tilt, 0deg) * -1));
+  transition:transform .5s ease;
+}
+.plant-card:hover .plant-card__blob img{ transform:rotate(calc(var(--tilt, 0deg) * -1)) scale(1.06); }
+
+.plant-card__tag{
+  font-size:.8125rem; /* 13px — was 0.68rem (~11px), too small to read comfortably */
+  font-weight:600;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--green-700);
+  opacity:.85;
+  margin-bottom:4px;
+}
+.plant-card h3{
+  font-family:var(--font-display);
+  font-size:1.2rem;
+  margin-bottom:6px;
+}
+.plant-card p{
+  font-size:.9375rem; /* 15px — was 0.82rem (~13px) */
+  line-height:1.5;
+  color:var(--ink-soft);
+  max-width:220px;
+  margin:0 auto;
+}
+.plant-card__go{
+  position:static;
+  margin-top:16px;
+  width:44px; height:44px; /* 44px minimum tap target */
+  border-radius:50%;
+  border:1px solid rgba(42,42,42,.15);
+  background:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink);
+  transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+.plant-card:hover .plant-card__go{ background:var(--green-700); color:#fff; transform:rotate(45deg); }
+
+.featured__cta{ text-align:center; margin-top:48px; }
+
+/* ==========================================================================
+   SERVICES
+   ========================================================================== */
+.services{ padding:90px 0; background:var(--green-50); }
+
+.section-head--center{ text-align:center; max-width:560px; margin:0 auto 56px; }
+.section-head--center h2{ font-size:clamp(1.9rem, 3vw, 2.5rem); }
+
+.services__grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+  max-width:900px;
+  margin:0 auto;
+}
+.service-item{
+  background:var(--white);
+  border-radius:var(--radius-md);
+  padding:30px 20px;
+  text-align:center;
+  box-shadow:var(--shadow-sm);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.service-item:hover{ transform:translateY(-6px); box-shadow:var(--shadow-md); }
+.service-item__icon{
+  width:58px; height:58px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  background:var(--green-100);
+  color:var(--green-700);
+  display:flex; align-items:center; justify-content:center;
+  transition:background .25s ease, color .25s ease;
+}
+.service-item:hover .service-item__icon{ background:var(--green-700); color:#fff; }
+.service-item h3{ font-size:1rem; margin-bottom:8px; font-family:var(--font-body); font-weight:600; }
+.service-item p{ font-size:.9375rem; line-height:1.55; }
+
+/* Per-service accent, matching the color coding from Inplant's social
+   posts: rosa = recuperación, amarillo = asesoramiento, azul petróleo =
+   ambientación. Verde queda reservado a marca/CTAs. */
+.service-item--pink .service-item__icon{ background:var(--pink-100); color:var(--pink-700); }
+.service-item--pink:hover .service-item__icon{ background:var(--pink-700); color:#fff; }
+
+.service-item--yellow .service-item__icon{ background:var(--yellow-100); color:var(--yellow-700); }
+.service-item--yellow:hover .service-item__icon{ background:var(--yellow-700); color:#fff; }
+
+.service-item--teal .service-item__icon{ background:var(--teal-100); color:var(--teal-700); }
+.service-item--teal:hover .service-item__icon{ background:var(--teal-700); color:#fff; }
+
+.services__cta{ text-align:center; margin-top:52px; }
+
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+.about{ padding:100px 0; }
+.about__inner{
+  display:grid;
+  grid-template-columns:.85fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+.about__media{ position:relative; }
+.about__img{
+  border-radius:var(--radius-lg);
+  aspect-ratio:4/4.7;
+  box-shadow:var(--shadow-md);
+  overflow:hidden;
+}
+.about__img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.about__note{
+  position:absolute;
+  left:24px; bottom:-28px;
+  background:var(--white);
+  border-radius:var(--radius-md);
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  box-shadow:var(--shadow-md);
+  max-width:240px;
+}
+.about__note svg{ color:var(--green-700); flex-shrink:0; }
+.about__note strong{ display:block; font-size:.82rem; }
+.about__note span{ font-size:.76rem; color:var(--ink-soft); }
+
+.about__text h2{ font-size:clamp(1.9rem, 3vw, 2.6rem); margin-bottom:18px; }
+.about__text > p{ margin-bottom:34px; max-width:480px; }
+
+.about__stats{
+  display:flex;
+  gap:38px;
+  margin-bottom:38px;
+  flex-wrap:wrap;
+}
+.stat{ display:flex; flex-direction:column; gap:2px; }
+.stat svg{ color:var(--green-700); margin-bottom:6px; }
+.stat strong{ font-family:var(--font-display); font-size:1.7rem; color:var(--green-700); }
+.stat span{ font-size:.875rem; color:var(--ink-soft); }
+
+/* ==========================================================================
+   CONTACTO
+   ========================================================================== */
+.contact{ padding:0 24px 90px; }
+.contact__inner{
+  max-width:var(--container);
+  margin:0 auto;
+  background:var(--green-700);
+  border-radius:var(--radius-lg);
+  padding:64px;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:56px;
+  align-items:center;
+  color:#fff;
+}
+.contact__text h2{ color:#fff; font-size:clamp(1.7rem, 2.8vw, 2.3rem); margin:8px 0 12px; }
+.contact__text > p{ color:rgba(255,255,255,.82); max-width:380px; margin-bottom:28px; }
+.contact__text .eyebrow{ color:rgba(255,255,255,.75); }
+
+.contact__info{ display:flex; flex-direction:column; gap:14px; }
+.contact__info a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  font-size:.9rem;
+  font-weight:500;
+}
+.contact__info a svg{ flex-shrink:0; opacity:.85; }
+
+.contact__form{
+  background:#fff;
+  border-radius:var(--radius-md);
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.contact__field{ display:flex; flex-direction:column; gap:6px; }
+.contact__field label{
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--ink-soft);
+}
+.contact__field input,
+.contact__field textarea{
+  border:1px solid rgba(42,42,42,.14);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  font-family:inherit;
+  font-size:16px; /* iOS zooms the page in on focus for inputs under 16px */
+  color:var(--ink);
+  outline:none;
+  transition:border-color .2s ease;
+}
+.contact__field textarea{ resize:vertical; min-height:90px; }
+.contact__field input:focus,
+.contact__field textarea:focus{ border-color:var(--green-700); }
+.contact__submit{ justify-content:center; margin-top:4px; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer{ background:var(--ink); color:rgba(255,255,255,.72); position:relative; overflow:hidden; }
+
+/* Organic wave divider — cream curving down into the dark footer */
+.footer::before{
+  content:'';
+  position:absolute;
+  top:-1px;
+  left:0;
+  width:100%;
+  height:80px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23f7f4ec' d='M0,0 L0,45 C360,65 1080,35 1440,45 L1440,0 Z'/%3E%3C/svg%3E");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  pointer-events:none;
+  z-index:1;
+}
+
+.footer__inner{
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr 1fr;
+  gap:40px;
+  padding:110px 24px 50px;
+  position:relative;
+  z-index:2;
+}
+
+@media (max-width:768px){
+  .footer::before{ height:52px; }
+  .footer__inner{ padding-top:88px; }
+}
+.footer__social{ display:flex; gap:12px; margin-top:22px; }
+.footer__social a{
+  position:relative;
+  width:34px; height:34px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s ease, transform .2s ease;
+}
+.footer__social a:hover{ background:var(--green-700); transform:translateY(-2px); }
+.footer__social a::after{
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:44px; height:44px;
+  transform:translate(-50%,-50%);
+}
+
+.footer__col h4{
+  font-family:var(--font-body);
+  font-size:.85rem;
+  font-weight:600;
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:20px;
+}
+.footer__col a,
+.footer__col span{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:.87rem;
+  margin-bottom:13px;
+  transition:color .2s ease;
+}
+.footer__col a:hover{ color:#fff; }
+.footer__location{ opacity:.85; }
+
+.footer__leaf{
+  position:absolute;
+  right:20px; bottom:-20px;
+  color:rgba(255,255,255,.06);
+  pointer-events:none;
+}
+
+.footer__bottom{ border-top:1px solid rgba(255,255,255,.08); }
+.footer__bottom-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 24px;
+  font-size:.8rem;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.footer__legal{ display:flex; gap:22px; }
+.footer__legal a:hover{ color:#fff; }
+
+/* ==========================================================================
+   SCROLL TOP
+   ========================================================================== */
+.scroll-top{
+  position:fixed;
+  right:24px; bottom:24px;
+  width:46px; height:46px;
+  border-radius:50%;
+  background:var(--green-700);
+  color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:var(--shadow-md);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px);
+  transition:opacity .3s ease, transform .3s ease, visibility .3s ease, background .2s ease;
+  z-index:90;
+}
+.scroll-top.is-visible{ opacity:1; visibility:visible; transform:translateY(0); }
+.scroll-top:hover{ background:var(--green-900); }
+
+/* ==========================================================================
+   REVEAL ANIMATION
+   ========================================================================== */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+[data-reveal].is-visible{ opacity:1; transform:translateY(0); }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width:1080px){
+  .plant-grid{ grid-template-columns:repeat(2, 1fr); }
+}
+
+@media (max-width:900px){
+  .hero__inner{ grid-template-columns:1fr; }
+  .hero__img{ aspect-ratio:16/11; }
+  .about__inner{ grid-template-columns:1fr; }
+  .about__media{ order:-1; }
+  .contact__inner{ grid-template-columns:1fr; padding:44px 32px; }
+}
+
+@media (max-width:768px){
+  .nav{
+    position:fixed;
+    top:0; right:0;
+    height:100vh; /* fallback for browsers without dvh support */
+    height:100dvh;
+    width:min(78vw, 320px);
+    background:var(--cream);
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    gap:0;
+    padding:100px 32px 32px;
+    transform:translateX(100%);
+    transition:transform .35s ease;
+    box-shadow:-10px 0 30px rgba(0,0,0,.08);
+    z-index:99;
+  }
+  .nav.is-open{ transform:translateX(0); }
+  .nav__link{ width:100%; padding:16px 0; border-bottom:1px solid rgba(42,42,42,.08); }
+  .nav__link::before{ top:0; bottom:0; } /* full-row hit area once links are already 44px+ tall */
+  .header__cta{ display:none; }
+  .burger{ display:flex; }
+
+  /* Dark scrim behind the mobile nav panel — dims the page and doubles as
+     a "tap outside to close" target. */
+  .nav-scrim{
+    position:fixed;
+    inset:0;
+    background:rgba(20,24,20,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease, visibility .3s ease;
+    z-index:98;
+  }
+  .nav-scrim.is-visible{ opacity:1; visibility:visible; }
+
+  body.nav-open{ overflow:hidden; }
+
+  .featured__head{ flex-direction:column; align-items:flex-start; }
+  .featured__headright{ justify-content:space-between; width:100%; }
+  .featured__headright p{ text-align:left; }
+
+  /* Real horizontal carousel on mobile — the arrows below scroll it,
+     instead of the old desktop trick of just reordering the 4 cards
+     (which did nothing visible once every card was already on screen). */
+  .carousel-controls{ display:flex; }
+  .plant-grid{
+    display:flex;
+    grid-template-columns:none;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:4px;
+    margin:0 -24px;
+    padding-left:24px;
+    padding-right:24px;
+  }
+  .plant-grid::-webkit-scrollbar{ display:none; }
+  .plant-grid .plant-card{
+    flex:0 0 78%;
+    scroll-snap-align:center;
+  }
+
+  .services__grid{ grid-template-columns:1fr; max-width:420px; }
+
+  .footer__inner{ grid-template-columns:1fr 1fr; }
+  .footer__brand{ grid-column:1 / -1; }
+}
+
+@media (max-width:520px){
+  .container{ padding:0 18px; }
+  .topbar__msg{ font-size:.72rem; }
+  .hero{ padding:48px 0 64px; }
+  .hero__badge{ width:96px; height:96px; left:-16px; bottom:-16px; }
+  .plant-grid{ margin:0 -18px; padding-left:18px; padding-right:18px; }
+  .plant-grid .plant-card{ flex-basis:84%; }
+  .services__grid{ grid-template-columns:1fr; }
+  .about__note{ position:static; margin-top:16px; max-width:none; }
+  .contact__inner{ padding:32px 24px; }
+  .contact__form{ padding:22px; }
+  .footer__inner{ grid-template-columns:1fr; }
+}

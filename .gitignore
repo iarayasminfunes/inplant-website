@@ -1,0 +1,16 @@
+# OS metadata
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# Raw research material (Instagram screenshots) — not used by the site
+image/
+
+# Original PNGs superseded by their optimized .webp version (kept on disk
+# as source backups, just not tracked — the site only loads the .webp)
+images/hero.png
+images/about.png
+images/calathea-triostar.png
+images/peperomia-variegada.png
+images/pink-princess.png
+images/potus-plateado.png

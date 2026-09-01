@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inplant — Bienestar Vegetal</title>
+<meta name="description" content="Cuidamos tus plantas y transformamos tus espacios en lugares más vivos, naturales y armoniosos.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container topbar__inner">
+    <span class="topbar__msg">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/></svg>
+      Plantas sanas, espacios felices.
+    </span>
+    <div class="topbar__social">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v7h4v-7h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg>
+      </a>
+      <a href="#" aria-label="Pinterest">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.5 2 3 5.7 3 10c0 3 1.7 5.4 4.2 6.4-.1-.5-.1-1.4.1-2 .1-.5 1-4.4 1-4.4s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.6 1.1 1.3 0 .8-.5 1.9-.8 3-.2.9.5 1.7 1.4 1.7 1.6 0 2.8-1.7 2.8-4.2 0-2.2-1.6-3.7-3.9-3.7-2.6 0-4.2 2-4.2 4 0 .8.3 1.6.7 2.1.1.1.1.2.1.3l-.3 1c0 .2-.1.3-.3.2-1.2-.5-1.9-2.1-1.9-3.4 0-2.8 2-5.3 5.9-5.3 3.1 0 5.5 2.2 5.5 5.2 0 3.1-2 5.6-4.7 5.6-.9 0-1.8-.5-2.1-1l-.6 2.2c-.2.8-.8 1.9-1.2 2.5.9.3 1.9.4 2.9.4 5.5 0 9-4.5 9-10S17.5 2 12 2z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="#inicio" class="logo">
+      <img src="img/logo-inplant.png" alt="Inplant Logo" class="logo-img" width="724" height="138">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#inicio" class="nav__link active">Inicio</a>
+      <a href="#servicios" class="nav__link">Servicios</a>
+      <a href="#plantas" class="nav__link">Plantas</a>
+      <a href="#nosotros" class="nav__link">Nosotros</a>
+      <a href="#contacto" class="nav__link">Contacto</a>
+    </nav>
+    <a href="#contacto" class="btn btn--primary btn--sm header__cta">Cotizá tu servicio
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-scrim" id="navScrim"></div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container hero__inner">
+      <div class="hero__text" data-reveal>
+        <h1>Bienestar vegetal, <em>bienestar para vos.</em></h1>
+        <p>Cuidamos tus plantas y transformamos tu hogar, oficina o local en un espacio más vivo, natural y armonioso.</p>
+        <div class="hero__ctas">
+          <!-- Número de WhatsApp PROVISORIO / de ejemplo — reemplazar por el real de Inplant -->
+          <a href="https://wa.me/5492611234567?text=Hola%20Inplant!%20Quiero%20cotizar%20un%20servicio." target="_blank" rel="noopener" class="btn btn--primary">Cotizá por WhatsApp
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5C11.2 9.2 10.7 8 10.5 7.5c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          </a>
+          <a href="#servicios" class="hero__link">Conocé nuestros servicios
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <ul class="hero__features">
+          <li>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+            Plantas sanas y felices
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c4 3 6 6 6 10a6 6 0 0 1-12 0c0-4 2-7 6-10z"/></svg>
+            Asesoramiento personalizado
+          </li>
+        </ul>
+      </div>
+      <div class="hero__media" data-reveal>
+        <div class="hero__img">
+          <img src="images/hero.webp" alt="Interior lleno de plantas con hamaca de macramé, luz natural entrando por la ventana" width="912" height="1151" loading="eager">
+        </div>
+        <div class="hero__badge">
+          <svg viewBox="0 0 100 100" class="hero__badge-ring"><path id="badgeCircle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"/><text font-size="8.6" letter-spacing="1.5"><textPath href="#badgeCircle">ESPACIOS VIVOS • MENTES FELICES • &#160;</textPath></text></svg>
+          <svg class="hero__badge-leaf" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <span class="eyebrow">Nuestros servicios</span>
+        <h2>Todo lo que tus plantas necesitan</h2>
+      </div>
+
+      <div class="services__grid">
+        <div class="service-item service-item--pink">
+          <div class="service-item__icon">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 14c4-6 12-6 16 0M12 3v6M12 14v7"/></svg>
+          </div>
+          <h3>Mantenimiento y recuperación</h3>
+          <p>¿Tus plantas perdieron fuerza? Las recuperamos y las acompañamos para que vuelvan a crecer.</p>
+        </div>
+        <div class="service-item service-item--yellow">
+          <div class="service-item__icon">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11a8 8 0 1 0-4.3 7.1L21 19l-1-3.6c.6-1.3 1-2.8 1-4.4z"/></svg>
+          </div>
+          <h3>Asesoramiento personalizado</h3>
+          <p>¿No sabés qué necesita tu planta? Te asesoramos para que se desarrolle en las mejores condiciones.</p>
+        </div>
+        <div class="service-item service-item--teal">
+          <div class="service-item__icon">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21c4-2 7-6 7-11a7 7 0 0 0-14 0c0 5 3 9 7 11z"/><path d="M12 10s-2-3-5-2"/></svg>
+          </div>
+          <h3>Ambientación verde</h3>
+          <p>Diseñamos una propuesta de plantas pensada para la luz, el uso y el estilo de tu espacio — desde una planta hasta cien.</p>
+        </div>
+      </div>
+
+      <div class="services__cta">
+        <a href="#contacto" class="btn btn--primary">Solicitar asesoramiento
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE INPLANT -->
+  <section class="about" id="nosotros">
+    <div class="container about__inner">
+      <div class="about__media" data-reveal>
+        <div class="about__img">
+          <img src="images/about.webp" alt="Jardín exterior diseñado por Inplant, con vegetación exuberante y ambientación cálida" width="866" height="865" loading="lazy">
+        </div>
+        <div class="about__note">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/></svg>
+          <div>
+            <strong>Nuestro propósito</strong>
+            <span>Conectar personas con la naturaleza.</span>
+          </div>
+        </div>
+      </div>
+      <div class="about__text" data-reveal>
+        <span class="eyebrow">Sobre Inplant</span>
+        <h2>Más que plantas, <em>creamos bienestar.</em></h2>
+        <p>En Inplant creemos en el poder transformador de las plantas. Nos apasiona ayudarte a conectar con la naturaleza a través de un servicio cercano, profesional y personalizado.</p>
+        <div class="about__stats">
+          <div class="stat">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <strong>+5</strong>
+            <span>Años de experiencia</span>
+          </div>
+          <div class="stat">
+            <strong>+200</strong>
+            <span>Clientes felices</span>
+          </div>
+          <div class="stat">
+            <strong>+1000</strong>
+            <span>Plantas cuidadas</span>
+          </div>
+        </div>
+        <a href="#contacto" class="btn btn--primary">Hablemos de tu espacio
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANTAS DESTACADAS -->
+  <section class="featured" id="plantas">
+    <div class="container">
+      <div class="featured__head">
+        <div>
+          <span class="eyebrow">Encontrá tu verde</span>
+          <h2>Plantas con <em>personalidad propia.</em></h2>
+        </div>
+        <div class="featured__headright">
+          <p>Especies reales inspiradas en la colección de Inplant.<br>Usá las flechas para cambiar su posición.</p>
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="prevPlant" aria-label="Anterior">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <button class="carousel-btn" id="nextPlant" aria-label="Siguiente">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="plant-grid" id="plantGrid">
+        <article class="plant-card plant-card--blue">
+          <div class="plant-card__blob"><img src="images/peperomia-variegada.webp" alt="Peperomia variegada en maceta" width="896" height="1200" loading="lazy"></div>
+          <span class="plant-card__tag">03 · Resistente</span>
+          <h3>Peperomia variegada</h3>
+          <p>Compacta, luminosa y muy fácil de integrar.</p>
+          <a class="plant-card__go" aria-label="Consultar por Peperomia variegada" href="https://wa.me/5492611234567?text=Hola%20Inplant!%20Quiero%20consultar%20por%20la%20Peperomia%20variegada." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </article>
+
+        <article class="plant-card plant-card--pink">
+          <div class="plant-card__blob"><img src="images/pink-princess.webp" alt="Pink Princess en maceta" width="896" height="1200" loading="lazy"></div>
+          <span class="plant-card__tag">04 · Con color</span>
+          <h3>Pink Princess</h3>
+          <p>La protagonista de verde, rosado y rosa.</p>
+          <a class="plant-card__go" aria-label="Consultar por Pink Princess" href="https://wa.me/5492611234567?text=Hola%20Inplant!%20Quiero%20consultar%20por%20la%20Pink%20Princess." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </article>
+
+        <article class="plant-card plant-card--green">
+          <div class="plant-card__blob"><img src="images/calathea-triostar.webp" alt="Calathea Triostar en maceta" width="1254" height="1254" loading="lazy"></div>
+          <span class="plant-card__tag">01 · Interior</span>
+          <h3>Calathea Triostar</h3>
+          <p>Follaje verde, crema y rosa para espacios luminosos.</p>
+          <a class="plant-card__go" aria-label="Consultar por Calathea Triostar" href="https://wa.me/5492611234567?text=Hola%20Inplant!%20Quiero%20consultar%20por%20la%20Calathea%20Triostar." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </article>
+
+        <article class="plant-card plant-card--yellow">
+          <div class="plant-card__blob"><img src="images/potus-plateado.webp" alt="Potus plateado en maceta" width="1254" height="1254" loading="lazy"></div>
+          <span class="plant-card__tag">02 · Colgante</span>
+          <h3>Potus plateado</h3>
+          <p>Hojas aterciopeladas con reflejos plateados.</p>
+          <a class="plant-card__go" aria-label="Consultar por Potus plateado" href="https://wa.me/5492611234567?text=Hola%20Inplant!%20Quiero%20consultar%20por%20el%20Potus%20plateado." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </article>
+      </div>
+
+      <div class="featured__cta">
+        <a href="#contacto" class="btn btn--primary">Consultar disponibilidad
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto">
+    <div class="container contact__inner">
+      <div class="contact__text">
+        <span class="eyebrow">Contacto</span>
+        <h2>Escribinos, <em>te leemos.</em></h2>
+        <p>Contanos qué necesitás y te respondemos a la brevedad.</p>
+        <div class="contact__info">
+          <a href="tel:+5492611234567">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9 21 3 15 3 7a2 2 0 0 1 2-2z"/></svg>
+            +54 9 261 123 4567
+          </a>
+          <a href="mailto:hola@inplant.com.ar">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            hola@inplant.com.ar
+          </a>
+        </div>
+      </div>
+
+      <!-- Número de WhatsApp PROVISORIO / de ejemplo — reemplazar por el real de Inplant -->
+      <form class="contact__form" id="contactForm" data-whatsapp-number="5492611234567">
+        <div class="contact__field">
+          <label for="contactName">Nombre</label>
+          <input type="text" id="contactName" name="Nombre" placeholder="Tu nombre" autocomplete="name" required>
+        </div>
+        <div class="contact__field">
+          <label for="contactPhone">Teléfono</label>
+          <input type="tel" id="contactPhone" name="Teléfono" placeholder="Tu número" autocomplete="tel" required>
+        </div>
+        <div class="contact__field">
+          <label for="contactQuery">Consulta</label>
+          <textarea id="contactQuery" name="Consulta" placeholder="Contanos qué servicio necesitás (asesoramiento, mantenimiento, ambientación...)" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary contact__submit">Enviar por WhatsApp
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5C11.2 9.2 10.7 8 10.5 7.5c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        </button>
+        <p class="sr-only" role="status" aria-live="polite" id="contactFormStatus"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#inicio" class="logo logo--footer">
+        <img src="img/logo-inplant.png" alt="Inplant — Bienestar Vegetal" class="logo-img logo-img--white" width="724" height="138">
+      </a>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v7h4v-7h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg>
+        </a>
+        <a href="#" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.5 2 3 5.7 3 10c0 3 1.7 5.4 4.2 6.4-.1-.5-.1-1.4.1-2 .1-.5 1-4.4 1-4.4s-.3-.5-.3-1.3c0-1.2.7-2.1 1.6-2.1.7 0 1.1.6 1.1 1.3 0 .8-.5 1.9-.8 3-.2.9.5 1.7 1.4 1.7 1.6 0 2.8-1.7 2.8-4.2 0-2.2-1.6-3.7-3.9-3.7-2.6 0-4.2 2-4.2 4 0 .8.3 1.6.7 2.1.1.1.1.2.1.3l-.3 1c0 .2-.1.3-.3.2-1.2-.5-1.9-2.1-1.9-3.4 0-2.8 2-5.3 5.9-5.3 3.1 0 5.5 2.2 5.5 5.2 0 3.1-2 5.6-4.7 5.6-.9 0-1.8-.5-2.1-1l-.6 2.2c-.2.8-.8 1.9-1.2 2.5.9.3 1.9.4 2.9.4 5.5 0 9-4.5 9-10S17.5 2 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4>Navegación</h4>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#plantas">Plantas</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Servicios</h4>
+      <a href="#servicios">Mantenimiento y recuperación</a>
+      <a href="#servicios">Asesoramiento personalizado</a>
+      <a href="#servicios">Ambientación verde</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Contacto</h4>
+      <a href="tel:+5492611234567">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9 21 3 15 3 7a2 2 0 0 1 2-2z"/></svg>
+        +54 9 261 123 4567
+      </a>
+      <a href="mailto:hola@inplant.com.ar">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        hola@inplant.com.ar
+      </a>
+      <span class="footer__location">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+        Mendoza, Argentina
+      </span>
+    </div>
+
+    <div class="footer__leaf" aria-hidden="true">
+      <svg viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M100 10c45 35 75 75 75 130a75 75 0 0 1-150 0c0-55 30-95 75-130z"/>
+        <path d="M100 35v195M65 95c22-10 45-4 45 6M135 95c-22-10-45-4-45 6M60 150c25-8 50 0 50 10M140 150c-25-8-50 0-50 10"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span>© 2026 Inplant. Todos los derechos reservados.</span>
+      <div class="footer__legal">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Términos y condiciones</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>
