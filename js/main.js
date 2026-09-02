@@ -137,14 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Contact form — shows the same notice instead of sending anything.
+  // Contact form — the form sits right above the footer, so the fixed
+  // bottom toast would cover the footer logo when triggered from here.
+  // Show the notice inline (button text swap) instead, same as the old
+  // "Abriendo WhatsApp…" pattern, so it never overlaps anything below it.
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const btn = contactForm.querySelector('button');
       const status = document.getElementById('contactFormStatus');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.textContent = PROPOSAL_NOTICE;
       if (status) status.textContent = PROPOSAL_NOTICE;
-      showProposalNotice();
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.disabled = false;
+      }, 3200);
     });
   }
 
