@@ -857,7 +857,7 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
   flex-wrap:wrap;
   gap:12px;
 }
-.footer__legal{ display:flex; gap:22px; }
+.footer__legal{ display:flex; flex-wrap:wrap; gap:12px 22px; }
 .footer__legal a:hover{ color:#fff; }
 
 .footer__disclaimer{
@@ -1010,7 +1010,7 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 
   .services__grid{ grid-template-columns:1fr; max-width:420px; }
 
-  .footer__inner{ grid-template-columns:1fr 1fr; }
+  .footer .footer__inner{ grid-template-columns:1fr 1fr; }
   .footer__brand{ grid-column:1 / -1; }
 }
 
@@ -1031,5 +1031,5 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
   .contact__form{ padding:22px 18px; }
   .contact__row{ grid-template-columns:1fr; }
   .contact__botanical{ display:none; }
-  .footer__inner{ grid-template-columns:1fr; }
+  .footer .footer__inner{ grid-template-columns:1fr; }
 }

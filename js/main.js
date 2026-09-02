@@ -7,7 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const onScroll = () => {
     const scrolled = window.scrollY > 12;
     header.classList.toggle('is-scrolled', scrolled);
-    scrollTopBtn.classList.toggle('is-visible', window.scrollY > 480);
+    // Hide near the very bottom of the page too — the button is fixed to
+    // the bottom-right corner and would otherwise sit on top of the
+    // footer's "Propuesta conceptual" disclaimer once there's nothing
+    // left to scroll.
+    const nearBottom = window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 90;
+    scrollTopBtn.classList.toggle('is-visible', window.scrollY > 480 && !nearBottom);
   };
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
