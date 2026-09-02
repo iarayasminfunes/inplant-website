@@ -554,6 +554,21 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 }
 .plant-card:hover .plant-card__go{ background:var(--green-700); color:#fff; transform:rotate(45deg); }
 
+/* Only shown on mobile, where .plant-grid is a real swipeable carousel
+   (see the max-width:768px block) — on tablet/desktop it's a static
+   grid, so there's nothing to hint at. */
+.plant-grid__hint{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin-top:14px;
+  font-size:.8rem;
+  font-weight:500;
+  color:var(--ink-soft);
+}
+.plant-grid__hint svg{ color:var(--green-700); flex-shrink:0; }
+
 .featured__cta{ text-align:center; margin-top:48px; }
 
 /* ==========================================================================
@@ -846,10 +861,11 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 .footer__legal a:hover{ color:#fff; }
 
 .footer__disclaimer{
-  font-size:.72rem;
-  color:rgba(255,255,255,.4);
+  font-size:.8rem;
+  font-weight:500;
+  color:rgba(255,255,255,.6);
   text-align:center;
-  padding:0 24px 18px;
+  padding:0 24px 20px;
   margin:0;
 }
 
@@ -920,7 +936,7 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 
 @media (max-width:900px){
   .hero__inner{ grid-template-columns:1fr; }
-  .hero__img{ aspect-ratio:4/5; } /* matches the photo's own portrait ratio (912×1151) so it shows almost uncropped, instead of the old 16:11 landscape frame that cut off ~45% of it */
+  .hero__img{ aspect-ratio:4/4.6; } /* close to the photo's own portrait ratio (912×1151 ≈ 4/5.05), just a bit shorter so "Servicios" comes into view sooner — still nowhere near the old 16:11 frame that cut off ~45% of it */
   .about__inner{ grid-template-columns:1fr; }
   .about__media{ order:-1; }
   .contact__inner{ grid-template-columns:1fr; padding:40px 32px; }
@@ -973,6 +989,7 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
      instead of the old desktop trick of just reordering the 4 cards
      (which did nothing visible once every card was already on screen). */
   .carousel-controls{ display:flex; }
+  .plant-grid__hint{ display:flex; }
   .plant-grid{
     display:flex;
     grid-template-columns:none;
@@ -1002,6 +1019,9 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
   .topbar__msg{ font-size:.72rem; }
   .hero{ padding:48px 0 64px; }
   .hero__badge{ width:96px; height:96px; left:-16px; bottom:-16px; }
+  .hero__ctas{ flex-direction:column; align-items:stretch; gap:16px; }
+  .hero__ctas .btn{ width:100%; justify-content:center; }
+  .hero__link{ justify-content:center; }
   .plant-grid{ margin:0 -18px; padding-left:18px; padding-right:18px; }
   .plant-grid .plant-card{ flex-basis:84%; }
   .services__grid{ grid-template-columns:1fr; }

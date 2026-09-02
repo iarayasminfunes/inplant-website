@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
      approves and provides their real WhatsApp number.
      ========================================================================== */
   const PROPOSAL_NOTICE = 'Esta función se activará en la versión publicada.';
+  const PLACEHOLDER_DATA_NOTICE = 'Dato de ejemplo — se reemplazará por la información real de Inplant.';
 
   let noticeTimer = null;
   const showProposalNotice = (message = PROPOSAL_NOTICE) => {
@@ -134,6 +135,15 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       showProposalNotice();
+    });
+  });
+
+  // The phone number and email shown around the site are placeholder /
+  // example data too — don't actually dial or open a mail client with them.
+  document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      showProposalNotice(PLACEHOLDER_DATA_NOTICE);
     });
   });
 
