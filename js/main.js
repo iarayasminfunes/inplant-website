@@ -102,49 +102,56 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.addEventListener('click', () => scrollByCard(-1));
   }
 
-  /* Contact form — opens WhatsApp with the message pre-filled (immediate,
-     no backend needed) AND, in parallel, POSTs the same lead to /api/contact
-     so it lands as an email to Inplant even if the visitor never finishes
-     the WhatsApp step. The WhatsApp number below is a PROVISIONAL / example
-     number — swap it for Inplant's real one. */
+  /* ==========================================================================
+     PROPOSAL MODE — this deployment is a concept pitch, not Inplant's live
+     site yet. Nothing here should message a real (fabricated) WhatsApp
+     number or send a real email. Every "send" action just shows a notice
+     instead. Flip this off (and restore the real logic below) once Inplant
+     approves and provides their real WhatsApp number.
+     ========================================================================== */
+  const PROPOSAL_NOTICE = 'Esta función se activará en la versión publicada.';
+
+  let noticeTimer = null;
+  const showProposalNotice = (message = PROPOSAL_NOTICE) => {
+    let toast = document.getElementById('proposalToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'proposalToast';
+      toast.className = 'proposal-toast';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    clearTimeout(noticeTimer);
+    noticeTimer = setTimeout(() => toast.classList.remove('is-visible'), 3200);
+  };
+
+  // Every WhatsApp deep-link on the page uses the same provisional/example
+  // number — none of them should actually open WhatsApp in this proposal.
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      showProposalNotice();
+    });
+  });
+
+  // Contact form — shows the same notice instead of sending anything.
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const number = contactForm.dataset.whatsappNumber;
-      const name = contactForm.querySelector('#contactName').value.trim();
-      const phone = contactForm.querySelector('#contactPhone').value.trim();
-      const query = contactForm.querySelector('#contactQuery').value.trim();
-
-      const message =
-        `Hola Inplant! Soy ${name}.\n` +
-        `Mi teléfono: ${phone}\n` +
-        `Consulta: ${query}`;
-      window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
-
-      // Fire-and-forget — WhatsApp already opened above regardless of
-      // whether this succeeds, so a failed/slow backend never blocks the
-      // visitor. Errors are only logged, not shown, to keep this silent.
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, query }),
-      }).catch((err) => console.error('Contact backend unreachable:', err));
-
-      const btn = contactForm.querySelector('button');
       const status = document.getElementById('contactFormStatus');
-      const original = btn.innerHTML;
-      btn.classList.add('is-loading');
-      btn.disabled = true;
-      btn.innerHTML = 'Abriendo WhatsApp…';
-      if (status) status.textContent = 'Abriendo WhatsApp en una pestaña nueva…';
-      setTimeout(() => {
-        btn.innerHTML = original;
-        btn.classList.remove('is-loading');
-        btn.disabled = false;
-        if (status) status.textContent = 'Listo. Continuá la consulta en WhatsApp.';
-      }, 2500);
+      if (status) status.textContent = PROPOSAL_NOTICE;
+      showProposalNotice();
     });
   }
+
+  // Placeholder links (social icons, legal pages) — keep the click from
+  // jumping to the top of the page via the empty "#" fragment.
+  document.querySelectorAll('a[href="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => e.preventDefault());
+  });
 
 });

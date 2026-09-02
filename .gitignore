@@ -24,3 +24,9 @@ images/calathea-triostar.png
 images/peperomia-variegada.png
 images/pink-princess.png
 images/potus-plateado.png
+
+.vercel
+.env*
+
+# Scratch review screenshots (before/after captures from local QA passes)
+.tmp-ui-review/

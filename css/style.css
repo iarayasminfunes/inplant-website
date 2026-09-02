@@ -640,34 +640,42 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 
 .about__stats{
   display:flex;
-  gap:38px;
+  flex-direction:column;
+  gap:14px;
   margin-bottom:38px;
-  flex-wrap:wrap;
 }
-.stat{ display:flex; flex-direction:column; gap:2px; }
-.stat svg{ color:var(--green-700); margin-bottom:6px; }
-.stat strong{ font-family:var(--font-display); font-size:1.7rem; color:var(--green-700); }
-.stat span{ font-size:.875rem; color:var(--ink-soft); }
+.stat{ display:flex; align-items:center; gap:10px; }
+.stat svg{ color:var(--green-700); flex-shrink:0; }
+.stat span{ font-size:.95rem; font-weight:500; color:var(--ink); }
 
 /* ==========================================================================
    CONTACTO
    ========================================================================== */
-.contact{ padding:0 24px 90px; }
+.contact{ padding:0 24px 76px; }
 .contact__inner{
   max-width:var(--container);
   margin:0 auto;
   background:var(--green-700);
   border-radius:var(--radius-lg);
-  padding:64px;
+  padding:52px 56px;
   display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:56px;
+  grid-template-columns:.82fr 1.18fr;
+  gap:44px;
   align-items:center;
   color:#fff;
+  position:relative;
+  overflow:hidden;
 }
-.contact__text h2{ color:#fff; font-size:clamp(1.7rem, 2.8vw, 2.3rem); margin:8px 0 12px; }
-.contact__text > p{ color:rgba(255,255,255,.82); max-width:380px; margin-bottom:28px; }
+.contact__text{ position:relative; z-index:1; align-self:stretch; display:flex; flex-direction:column; justify-content:center; }
+.contact__text h2{ color:#fff; font-size:clamp(1.9rem, 2.7vw, 2.45rem); margin:8px 0 14px; max-width:430px; }
+.contact__text h2 em{ color:var(--cream); }
+.contact__text > p{ color:rgba(255,255,255,.82); max-width:430px; margin-bottom:22px; }
 .contact__text .eyebrow{ color:rgba(255,255,255,.75); }
+
+.contact__benefits{ display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.contact__benefits li{ display:flex; align-items:center; gap:10px; font-size:.875rem; font-weight:500; }
+.contact__check{ width:24px; height:24px; border-radius:50%; display:grid; place-items:center; color:var(--green-900); background:var(--cream); flex-shrink:0; }
+.contact__botanical{ position:absolute; width:260px; right:-30px; bottom:-74px; color:rgba(255,255,255,.1); pointer-events:none; }
 
 .contact__info{ display:flex; flex-direction:column; gap:14px; }
 .contact__info a{
@@ -681,13 +689,17 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 .contact__info a svg{ flex-shrink:0; opacity:.85; }
 
 .contact__form{
-  background:#fff;
+  background:var(--cream);
   border-radius:var(--radius-md);
   padding:28px;
   display:flex;
   flex-direction:column;
-  gap:16px;
+  gap:15px;
+  position:relative;
+  z-index:2;
+  box-shadow:0 24px 60px rgba(18,58,40,.2);
 }
+.contact__row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .contact__field{ display:flex; flex-direction:column; gap:6px; }
 .contact__field label{
   font-size:.78rem;
@@ -696,19 +708,23 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 }
 .contact__field input,
 .contact__field textarea{
-  border:1px solid rgba(42,42,42,.14);
+  border:1px solid rgba(42,42,42,.16);
   border-radius:var(--radius-sm);
-  padding:12px 14px;
+  padding:13px 14px;
   font-family:inherit;
   font-size:16px; /* iOS zooms the page in on focus for inputs under 16px */
   color:var(--ink);
+  background:rgba(255,255,255,.72);
   outline:none;
   transition:border-color .2s ease;
 }
-.contact__field textarea{ resize:vertical; min-height:90px; }
+.contact__field textarea{ resize:vertical; min-height:96px; }
 .contact__field input:focus,
 .contact__field textarea:focus{ border-color:var(--green-700); }
-.contact__submit{ justify-content:center; margin-top:4px; }
+.contact__submit{ justify-content:center; margin-top:2px; width:100%; }
+.contact__submit:disabled{ opacity:.65; cursor:wait; transform:none; }
+.contact__helper{ display:flex; justify-content:center; align-items:center; gap:7px; color:var(--ink-soft); font-size:.75rem; line-height:1.4; text-align:center; }
+.contact__helper svg{ flex-shrink:0; color:var(--green-700); }
 
 /* ==========================================================================
    FOOTER
@@ -802,6 +818,41 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 .footer__legal{ display:flex; gap:22px; }
 .footer__legal a:hover{ color:#fff; }
 
+.footer__disclaimer{
+  font-size:.72rem;
+  color:rgba(255,255,255,.4);
+  text-align:center;
+  padding:0 24px 18px;
+  margin:0;
+}
+
+/* ==========================================================================
+   PROPOSAL NOTICE (toast)
+   ========================================================================== */
+.proposal-toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translate(-50%, 12px);
+  max-width:min(90vw, 360px);
+  background:var(--ink);
+  color:#fff;
+  font-size:.85rem;
+  font-weight:500;
+  text-align:center;
+  padding:13px 20px;
+  border-radius:var(--radius-pill);
+  box-shadow:var(--shadow-md);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+  z-index:200;
+}
+.proposal-toast.is-visible{
+  opacity:1;
+  transform:translate(-50%, 0);
+}
+
 /* ==========================================================================
    SCROLL TOP
    ========================================================================== */
@@ -842,10 +893,10 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 
 @media (max-width:900px){
   .hero__inner{ grid-template-columns:1fr; }
-  .hero__img{ aspect-ratio:16/11; }
+  .hero__img{ aspect-ratio:4/5; } /* matches the photo's own portrait ratio (912×1151) so it shows almost uncropped, instead of the old 16:11 landscape frame that cut off ~45% of it */
   .about__inner{ grid-template-columns:1fr; }
   .about__media{ order:-1; }
-  .contact__inner{ grid-template-columns:1fr; padding:44px 32px; }
+  .contact__inner{ grid-template-columns:1fr; padding:40px 32px; }
 }
 
 @media (max-width:768px){
@@ -928,7 +979,10 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
   .plant-grid .plant-card{ flex-basis:84%; }
   .services__grid{ grid-template-columns:1fr; }
   .about__note{ position:static; margin-top:16px; max-width:none; }
-  .contact__inner{ padding:32px 24px; }
-  .contact__form{ padding:22px; }
+  .contact{ padding-left:14px; padding-right:14px; padding-bottom:64px; }
+  .contact__inner{ padding:28px 20px; }
+  .contact__form{ padding:22px 18px; }
+  .contact__row{ grid-template-columns:1fr; }
+  .contact__botanical{ display:none; }
   .footer__inner{ grid-template-columns:1fr; }
 }

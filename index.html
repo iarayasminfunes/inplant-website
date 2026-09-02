@@ -158,17 +158,16 @@
         <p>En Inplant creemos en el poder transformador de las plantas. Nos apasiona ayudarte a conectar con la naturaleza a través de un servicio cercano, profesional y personalizado.</p>
         <div class="about__stats">
           <div class="stat">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10z"/><path d="M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+            <span>Atención personalizada</span>
+          </div>
+          <div class="stat">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c4 3 6 6 6 10a6 6 0 0 1-12 0c0-4 2-7 6-10z"/></svg>
+            <span>Diseño a medida</span>
+          </div>
+          <div class="stat">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            <strong>+5</strong>
-            <span>Años de experiencia</span>
-          </div>
-          <div class="stat">
-            <strong>+200</strong>
-            <span>Clientes felices</span>
-          </div>
-          <div class="stat">
-            <strong>+1000</strong>
-            <span>Plantas cuidadas</span>
+            <span>Seguimiento continuo</span>
           </div>
         </div>
         <a href="#contacto" class="btn btn--primary">Hablemos de tu espacio
@@ -254,8 +253,22 @@
     <div class="container contact__inner">
       <div class="contact__text">
         <span class="eyebrow">Contacto</span>
-        <h2>Escribinos, <em>te leemos.</em></h2>
-        <p>Contanos qué necesitás y te respondemos a la brevedad.</p>
+        <h2>Contanos sobre <em>tu espacio.</em></h2>
+        <p>Te ayudamos a encontrar una solución simple y personalizada para vos y tus plantas.</p>
+        <ul class="contact__benefits" aria-label="Beneficios de contactarnos">
+          <li>
+            <span class="contact__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>
+            </span>
+            Respuesta dentro de las 24 horas
+          </li>
+          <li>
+            <span class="contact__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 12 4 4L19 6"/></svg>
+            </span>
+            Atención cercana y personalizada
+          </li>
+        </ul>
         <div class="contact__info">
           <a href="tel:+5492611234567">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9 21 3 15 3 7a2 2 0 0 1 2-2z"/></svg>
@@ -266,17 +279,22 @@
             hola@inplant.com.ar
           </a>
         </div>
+        <svg class="contact__botanical" viewBox="0 0 260 180" fill="none" aria-hidden="true">
+          <path d="M34 178c48-46 76-93 91-159M71 143c-23-7-37-22-43-46 25 1 44 13 55 34M101 91c-20-13-29-31-27-55 24 8 39 24 44 47M126 51c12-22 30-35 54-39-4 25-18 42-43 52M116 112c19-21 42-30 70-27-11 27-31 42-61 44M165 178c21-34 34-70 40-110M186 126c-15-10-23-24-23-43 19 5 31 17 36 36M204 93c9-17 23-28 42-32-2 20-13 34-32 43" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
 
       <!-- Número de WhatsApp PROVISORIO / de ejemplo — reemplazar por el real de Inplant -->
       <form class="contact__form" id="contactForm" data-whatsapp-number="5492611234567">
-        <div class="contact__field">
-          <label for="contactName">Nombre</label>
-          <input type="text" id="contactName" name="Nombre" placeholder="Tu nombre" autocomplete="name" required>
-        </div>
-        <div class="contact__field">
-          <label for="contactPhone">Teléfono</label>
-          <input type="tel" id="contactPhone" name="Teléfono" placeholder="Tu número" autocomplete="tel" required>
+        <div class="contact__row">
+          <div class="contact__field">
+            <label for="contactName">Nombre</label>
+            <input type="text" id="contactName" name="Nombre" placeholder="Tu nombre" autocomplete="name" required>
+          </div>
+          <div class="contact__field">
+            <label for="contactPhone">Teléfono</label>
+            <input type="tel" id="contactPhone" name="Teléfono" placeholder="Tu número" autocomplete="tel" inputmode="tel" required>
+          </div>
         </div>
         <div class="contact__field">
           <label for="contactQuery">Consulta</label>
@@ -285,6 +303,10 @@
         <button type="submit" class="btn btn--primary contact__submit">Enviar por WhatsApp
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5C11.2 9.2 10.7 8 10.5 7.5c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
         </button>
+        <p class="contact__helper">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 11v6M12 7h.01"/></svg>
+          Te llevamos a WhatsApp con el mensaje preparado.
+        </p>
         <p class="sr-only" role="status" aria-live="polite" id="contactFormStatus"></p>
       </form>
     </div>
@@ -360,6 +382,9 @@
         <a href="#">Términos y condiciones</a>
       </div>
     </div>
+    <div class="container">
+      <p class="footer__disclaimer">Propuesta conceptual — no es un sitio oficial de Inplant.</p>
+    </div>
   </div>
 </footer>
 
@@ -367,6 +392,6 @@
   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
