@@ -767,7 +767,13 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
   z-index:1;
 }
 
-.footer__inner{
+/* Scoped as ".footer .footer__inner" (not just ".footer__inner") so this
+   always outranks the plain ".container{ padding:... }" resets in the
+   small-screen media queries below — this element carries both classes
+   ("container footer__inner"), and a same-specificity, later-in-file
+   ".container" rule was winning the padding-top tie-break, collapsing
+   the clearance below the wave and pushing the logo up under it. */
+.footer .footer__inner{
   display:grid;
   grid-template-columns:1.3fr 1fr 1fr 1fr;
   gap:40px;
@@ -778,7 +784,7 @@ p{ margin:0; line-height:1.7; color:var(--ink-soft); }
 
 @media (max-width:768px){
   .footer::before{ height:52px; }
-  .footer__inner{ padding-top:88px; }
+  .footer .footer__inner{ padding-top:88px; }
 }
 .footer__social{ display:flex; gap:12px; margin-top:22px; }
 .footer__social a{
